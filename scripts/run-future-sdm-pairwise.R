@@ -110,7 +110,8 @@ worldmap=data("world2MapEnv")
 
 # Draw the base map
 plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, 
-     xlab="Longitude",ylab="Latitude")
+     xlab="Longitude",ylab="Latitude",
+    main = paste0(gsub(pattern = "_", replacement = " ", x = outprefix), " - future"))
 
 # Add the model rasters
 plot(combined.raster, legend = FALSE, add = TRUE, breaks = breakpoints, col = plot.colors)
