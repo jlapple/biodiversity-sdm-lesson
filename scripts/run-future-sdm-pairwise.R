@@ -47,7 +47,7 @@ if (any(write.access != 0)) {
 }
 
 # Load dependancies, keeping track of any that fail
-required.packages <- c("raster", "sp", "dismo", "maptools")
+required.packages <- c("raster", "sp", "dismo", "maps")
 missing.packages <- character(0)
 for (one.package in required.packages) {
   if (!suppressMessages(require(package = one.package, character.only = TRUE))) {
@@ -106,22 +106,21 @@ breakpoints <- c(0, 1, 2, 3, 4)
 plot.colors <- c("white", "purple3","darkolivegreen4", "orangered4", "black")
 
 # Load in data for map borders
-data(wrld_simpl)
+worldmap=data("world2MapEnv")
 
 # Draw the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "gray95")
+plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, 
+     xlab="Longitude",ylab="Latitude")
 
 # Add the model rasters
 plot(combined.raster, legend = FALSE, add = TRUE, breaks = breakpoints, col = plot.colors)
 
 # Redraw the borders of the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", col = NA)
+map("world", add=TRUE)
 
 # Add the legend
 legend("topright", legend = c("Insect", "Plant", "Both"), fill = plot.colors[2:4], bg = "#FFFFFF")
 
-# Add bounding box around map
-box()
 
 # Stop re-direction to PDF graphics device
 dev.off()
