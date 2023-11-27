@@ -40,7 +40,7 @@ if (any(write.access != 0)) {
 }
 
 # Load dependancies, keeping track of any that fail
-required.packages <- c("sp", "maptools")
+required.packages <- c("sp", "maps")
 missing.packages <- character(0)
 for (one.package in required.packages) {
   if (!suppressMessages(require(package = one.package, character.only = TRUE))) {
@@ -74,20 +74,20 @@ plot.file <- paste0(outpath, outprefix, "-observations.pdf")
 pdf(file = plot.file, useDingbats = FALSE)
 
 # Load in data for map borders
-data(wrld_simpl)
+worldmap=data("world2MapEnv")
 
 # Draw the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "gray95",
+
+plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, 
+     xlab="Longitude",ylab="Latitude",
      main = paste0("Observations of ", gsub(pattern = "_", replacement = " ", x = outprefix)))
 
 # Add observation points
 points(x = prepared.data$lon, y = prepared.data$lat, col = "#003300", pch = 20, cex = 0.7)
 
 # Redraw the borders of the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", col = NA)
+map("world",add=TRUE)
 
-# Add bounding box around map
-box()
 
 # Stop writing to PDF
 dev.off()
