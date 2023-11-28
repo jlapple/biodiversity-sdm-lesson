@@ -149,8 +149,8 @@ plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "g
 points(x = butterfly.data$lon, y = butterfly.data$lat, col = "#003300", pch = 21, cex = 0.7, 
        bg = butterfly.color, lwd = 0.5)
 
-# Add bounding box around map
-box()
+# Redraw the borders of the base map
+map("world",add=TRUE)
 
 ################################################################################
 # PLOT 2: Observation of plant species
@@ -170,8 +170,8 @@ plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "g
 points(x = plant.data$lon, y = plant.data$lat, col = "#003300", pch = 21, cex = 0.7,
        bg = plant.color, lwd = 0.5)
 
-# Add bounding box around map
-box()
+# Redraw the borders of the base map
+map("world",add=TRUE)
 
 ################################################################################
 # PLOT 3: Contemporary SDM of butterfly species
@@ -191,10 +191,7 @@ plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "g
 plot(butterfly.raster.current, legend = FALSE, add = TRUE, breaks = c(0, 1, 2), col = c("white", butterfly.color, "white"))
 
 # Redraw the borders of the base map
-plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", lwd = 0.5, col = NA)
-
-# Add bounding box around map
-box()
+map("world",add=TRUE)
 
 ################################################################################
 # PLOT 4: Contemporary SDM of plant species
@@ -214,10 +211,8 @@ plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "g
 plot(plant.raster.current, legend = FALSE, add = TRUE, breaks = c(0, 1, 2), col = c("white", plant.color, "white"))
 
 # Redraw the borders of the base map
-plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", lwd = 0.5, col = NA)
+map("world",add=TRUE)
 
-# Add bounding box around map
-box()
 
 ################################################################################
 # PLOT 5: Contemporary SDMs of butterfly & plant species with overlap
@@ -245,7 +240,7 @@ plot(combined.raster.current,
      col = plot.colors)
 
 # Redraw the borders of the base map
-plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", lwd = 0.5, col = NA)
+map("world",add=TRUE)
 
 # Add the legend
 legend("topright", legend = c(gsub(pattern = "_", replacement = " ", x = butterfly.species), 
@@ -255,8 +250,6 @@ legend("topright", legend = c(gsub(pattern = "_", replacement = " ", x = butterf
        bg = "#FFFFFF",
        cex = legend.cex)
 
-# Add bounding box around map
-box()
 
 ################################################################################
 # PLOT 6: Forecast SDMs of butterfly & plant species with overlap
@@ -284,7 +277,7 @@ plot(combined.raster.future,
      col = plot.colors)
 
 # Redraw the borders of the base map
-plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", lwd = 0.5, col = NA)
+map("world",add=TRUE)
 
 # Add the legend
 legend("topright", legend = c(gsub(pattern = "_", replacement = " ", x = butterfly.species), 
@@ -294,8 +287,6 @@ legend("topright", legend = c(gsub(pattern = "_", replacement = " ", x = butterf
        bg = "#FFFFFF",
        cex = legend.cex)
 
-# Add bounding box around map
-box()
 
 # Reset default graphics parameters
 par(mfrow = c(1, 1),
