@@ -109,7 +109,7 @@ plot.colors <- c("white", "purple3","darkolivegreen4", "orangered4", "black")
 worldmap=data("world2MapEnv")
 
 # Draw the base map
-plot(worldmap, xlim = c(xmi,n, xmax), ylim = c(ymin, ymax), axes = TRUE, xlab="Longitude",
+plot(worldmap, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, xlab="Longitude",
     ylab="Latitude", 
     main = paste0(gsub(pattern = "_", replacement = " ", x = outprefix), " - current"))
 
